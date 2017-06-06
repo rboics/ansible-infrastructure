@@ -30,7 +30,7 @@
 - name: enable named so it comes up on boot
   systemd:
     name: named
-    state: enabled
+    enabled: yes
   become: true
 
 - name: add iptables rule for DNS traffic
