@@ -2,11 +2,6 @@
 # This playbook was designed to be run against a Debian 8 system. 
 # This playbook requires the -K flag.
 ---
-- name: download source
-  get_url: 
-    url: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
-    dest: /tmp/postfix-2.6.19.tar.gz
-
 - name: install dependencies
   apt:
     name: postfix
@@ -20,10 +15,34 @@
     update_cache: yes
   become: yes
 
-- name: unpack source
+- name: download and unpack source
   unarchive:
-    src: /tmp/postfix-2.6.19.tar.gz
+    src: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
     dest: /tmp
+    remote_src: True
+
+# The build process for Postfix does not work by default in a base Debian.
+# The following steps modify the makedefs file to look in another location
+# on the filesystem that libraries are found, and copies two stubborn libraries
+# to a more generic name, which allows make to actually find them.
+
+- name: augment makedefs
+  replace:
+    path: /tmp/postfix-2.6.19/makedefs
+    regexp: '^(.*)for lib in \/usr\/lib64(.*)$'
+    replace: 'for lib in /usr/lib64 /lib64 /usr/lib /lib /lib/x86_64-linux-gnu'
+
+- name: copy file 1
+  command: |
+    cp /lib/x86_64-linux-gnu/libnsl.so.1 
+    /lib/x86_64-linux-gnu/libnsl.so
+  become: yes
+
+- name: copy file 2
+  command: |
+    cp /lib/x86_64-linux-gnu/libresolv.so.2
+    /lib/x86_64-linux-gnu/libresolv.so
+  become: yes
 
 - name: build postfix
   make:
