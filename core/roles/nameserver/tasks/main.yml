@@ -33,9 +33,18 @@
     enabled: yes
   become: true
 
-- name: add iptables rule for DNS traffic
+- name: add iptables rule for DNS traffic (INPUT chain)
   iptables:
     chain: INPUT
+    protocol: udp
+    destination_port: 53
+    jump: ACCEPT
+    comment: dns for named
+  become: yes
+
+- name: add iptables rule for DNS traffic (OUTPUT chain)
+  iptables:
+    chain: OUTPUT
     protocol: udp
     destination_port: 53
     jump: ACCEPT
@@ -45,3 +54,4 @@
 - name: change hostname
   hostname: 
     name: ns
+  become: yes
