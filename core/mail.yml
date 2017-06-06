@@ -1,0 +1,6 @@
+# mail.yml - Map the mail group to the mail role.
+---
+- hosts: mail
+  roles:
+    - mail
+    - common

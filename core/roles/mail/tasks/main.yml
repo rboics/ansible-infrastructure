@@ -1,0 +1,8 @@
+# main.yml - Performs the Postfix and Horde installations.
+# This playbook requires the -K flag. This playbook is designed
+# to be run against a system with Debian 8 installed on it.
+---
+- include: postfix.yml
+- include: procmail.yml
+- include: bash.yml
+- include: horde.yml
