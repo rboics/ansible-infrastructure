@@ -1,0 +1,33 @@
+# postfix.yml - Downloads and builds Postfix 2.6.19.
+# This playbook was designed to be run against a Debian 8 system. 
+# This playbook requires the -K flag.
+---
+- name: download source
+  get_url: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
+  dest: /tmp
+
+- name: install dependencies
+  command: apt-get build-dep postfix
+  become: yes
+
+- name: install build tools
+  apt:
+    name: build-essential
+    state: latest
+    update_cache: yes
+  become: yes
+
+- name: unpack source
+  unarchive:
+    src: /tmp/postfix-2.6.19.tar.gz
+    dest: /tmp
+
+- name: build postfix
+  make:
+    chdir: /tmp/postfix-2.6.19
+
+- name: install postfix
+  make:
+    chdir: /tmp/postfix-2.6.19
+    target: install
+  become: yes
