@@ -1,0 +1,14 @@
+# main.yml - The main playbook to build the nameserver role.
+#
+# This playbook assumes that the system it is being run against is a CentOS 7
+# system. This playbook uses become, so it must be run with the -K flag.
+
+- name: install named
+  yum:
+    name: bind
+    state: latest
+  become: true
+
+- name: copy config files over
+  copy:
+    src: 
