@@ -48,8 +48,23 @@
   make:
     chdir: /tmp/postfix-2.6.19
 
+- name: add postfix user
+  user:
+    name: postfix
+  become: yes
+
+- name: add postdrop group
+  group:
+    name: postdrop
+    state: present
+  become: yes
+
+- name: make postfix-install executable
+  file: 
+    path: /tmp/postfix-2.6.19/postfix-install
+    mode: "o+x"
+  become: yes
+
 - name: install postfix
-  make:
-    chdir: /tmp/postfix-2.6.19
-    target: install
+  raw: cd /tmp/postfix-2.6.19 && /bin/sh ./postfix-install -non-interactive
   become: yes
