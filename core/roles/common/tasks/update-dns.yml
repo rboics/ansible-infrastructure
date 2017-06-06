@@ -20,7 +20,5 @@
   become: yes
 
 - name: change /etc/resolv.conf
-  blockinfile: 
-    path: /etc/resolv.conf
-    block: "nameserver {{nameserver_ip}}"
+  raw: echo "nameserver {{nameserver_ip}}" > /etc/resolv.conf
   become: yes
