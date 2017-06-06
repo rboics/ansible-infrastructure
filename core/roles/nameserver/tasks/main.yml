@@ -41,3 +41,6 @@
     jump: ACCEPT
     comment: dns for named
   become: yes
+
+- name: change hostname
+  hostname: name: ns.metropolis-general.com
