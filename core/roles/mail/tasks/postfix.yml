@@ -5,10 +5,12 @@
 - name: download source
   get_url: 
     url: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
-    dest: /tmp
+    dest: /tmp/postfix-2.6.19.tar.gz
 
 - name: install dependencies
-  command: apt-get build-dep postfix
+  apt:
+    name: postfix
+    state: build-dep    
   become: yes
 
 - name: install build tools
