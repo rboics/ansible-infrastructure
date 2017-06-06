@@ -5,7 +5,7 @@ $TTL 1D
 					1H	; retry
 					1W	; expire
 					3H )	; minimum
-@			IN	NS	ns.metropolis-general.com
+@			IN	NS	ns.metropolis-general.com.
 
 @			IN	MX	10	mail.metropolis-general.com
 
