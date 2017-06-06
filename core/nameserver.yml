@@ -3,3 +3,4 @@
 - hosts: nameserver
   roles:
     - nameserver
+    - common

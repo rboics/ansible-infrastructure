@@ -1,0 +1,3 @@
+# main.yml - Calls all of the common tasks.
+---
+- include: update-dns.yml

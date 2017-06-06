@@ -1,0 +1,24 @@
+# update-dns.yml - This playbook modifies a host's DNS configuration to point
+# at the IP specified in the inventory file.
+# This playbook requires the -K flag.
+---
+- name: make sure NetworkManager is off
+  systemd: state=stopped name=NetworkManager
+  when: > 
+    (ansible_distribution == "CentOS" and
+    ansible_distribution_master_version == "7") or
+    (ansible_distribution == "Debian" and 
+    ansible_distribution_master_version == "8")
+
+- name: make sure NetworkManager is off
+  service: state=stopped name=NetworkManager
+  when: >
+    (ansible_distribution == "CentOS" and 
+    ansible_distribution_master_version == "6") or
+    (ansible_distribution == "Ubuntu" and
+    ansible_distribution_master_version == "12.04")
+
+- name: change /etc/resolv.conf
+  blockinfile: 
+    path: /etc/resolv.conf
+    block: "nameserver {{nameserver_ip}}"
