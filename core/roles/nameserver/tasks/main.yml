@@ -11,4 +11,33 @@
 
 - name: copy config files over
   copy:
-    src: 
+    src: ../files/
+    dest: /etc
+    owner: root
+    group: named
+  become: true
+
+- name: relocate db file to /var/named
+  command: mv /etc/db.metropolis-general.com /var/named/
+  become: true
+
+- name: start named if it's not already started
+  systemd:
+    name: named
+    state: started
+  become: true
+
+- name: enable named so it comes up on boot
+  systemd:
+    name: named
+    state: enabled
+  become: true
+
+- name: add iptables rule for DNS traffic
+  iptables:
+    chain: INPUT
+    protocol: udp
+    destination_port: 53
+    jump: ACCEPT
+    comment: dns for named
+  become: yes
