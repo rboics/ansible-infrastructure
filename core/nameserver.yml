@@ -1,0 +1,5 @@
+# nameserver.yml - Map the nameserver group to the nameserver role.
+---
+- hosts: nameserver
+  roles:
+    - nameserver

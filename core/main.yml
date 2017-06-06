@@ -1,0 +1,4 @@
+# main.yml - Master playbook that includes all the roles. 
+# Inventory file controls which hosts belong to which role.
+---
+- include: nameserver.yml

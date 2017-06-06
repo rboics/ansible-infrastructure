@@ -2,7 +2,7 @@
 #
 # This playbook assumes that the system it is being run against is a CentOS 7
 # system. This playbook uses become, so it must be run with the -K flag.
-
+---
 - name: install named
   yum:
     name: bind
