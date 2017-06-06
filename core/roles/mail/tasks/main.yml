@@ -3,6 +3,6 @@
 # to be run against a system with Debian 8 installed on it.
 ---
 - include: postfix.yml
-- include: procmail.yml
-- include: bash.yml
-- include: horde.yml
+#- include: procmail.yml
+#- include: bash.yml
+#- include: horde.yml
