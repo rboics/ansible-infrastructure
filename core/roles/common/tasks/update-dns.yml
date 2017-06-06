@@ -4,21 +4,23 @@
 ---
 - name: make sure NetworkManager is off
   systemd: state=stopped name=NetworkManager
-  when: > 
+  when: 
     (ansible_distribution == "CentOS" and
-    ansible_distribution_master_version == "7") or
-    (ansible_distribution == "Debian" and 
-    ansible_distribution_master_version == "8")
+    ansible_distribution_major_version == "7") or
+    (ansible_distribution == "Debian" and
+    ansible_distribution_major_version == "8")
+  become: yes
 
 - name: make sure NetworkManager is off
   service: state=stopped name=NetworkManager
-  when: >
+  when: 
     (ansible_distribution == "CentOS" and 
-    ansible_distribution_master_version == "6") or
-    (ansible_distribution == "Ubuntu" and
-    ansible_distribution_master_version == "12.04")
+    ansible_distribution_major_version == "6") or
+    (ansible_distribution == "Ubuntu")
+  become: yes
 
 - name: change /etc/resolv.conf
   blockinfile: 
     path: /etc/resolv.conf
     block: "nameserver {{nameserver_ip}}"
+  become: yes
