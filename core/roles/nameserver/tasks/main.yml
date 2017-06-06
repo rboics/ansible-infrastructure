@@ -33,22 +33,21 @@
     enabled: yes
   become: true
 
-- name: add iptables rule for DNS traffic (INPUT chain)
-  iptables:
-    chain: INPUT
-    protocol: udp
-    destination_port: 53
-    jump: ACCEPT
-    comment: dns for named
-  become: yes
+- name: stop firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+  become: true
+ 
+- name: disable firewalld
+  systemd:
+    name: firewalld
+    enabled: no
+  become: true
 
-- name: add iptables rule for DNS traffic (OUTPUT chain)
+- name: flush iptables
   iptables:
-    chain: OUTPUT
-    protocol: udp
-    destination_port: 53
-    jump: ACCEPT
-    comment: dns for named
+    flush: yes
   become: yes
 
 - name: change hostname
