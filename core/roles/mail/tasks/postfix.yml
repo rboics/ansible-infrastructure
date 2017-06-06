@@ -3,8 +3,9 @@
 # This playbook requires the -K flag.
 ---
 - name: download source
-  get_url: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
-  dest: /tmp
+  get_url: 
+    url: ftp://ftp.reverse.net/pub/postfix/official/postfix-2.6.19.tar.gz
+    dest: /tmp
 
 - name: install dependencies
   command: apt-get build-dep postfix
