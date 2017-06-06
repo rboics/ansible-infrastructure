@@ -43,4 +43,5 @@
   become: yes
 
 - name: change hostname
-  hostname: name: ns
+  hostname: 
+    name: ns
