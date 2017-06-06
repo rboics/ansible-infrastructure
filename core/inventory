@@ -1,2 +1,4 @@
 [nameserver]
 
+[nameserver:vars]
+nameserver_ip=
