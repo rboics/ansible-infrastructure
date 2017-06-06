@@ -43,4 +43,4 @@
   become: yes
 
 - name: change hostname
-  hostname: name: ns.metropolis-general.com
+  hostname: name: ns
