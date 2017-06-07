@@ -27,6 +27,12 @@
     state: present
   become: yes
 
+- name: install mysql
+  apt:
+    name: mysql-server
+    state: present
+  become: yes
+
 - name: register horde pear channel
   command: pear channel-discover pear.horde.org
   become: yes
@@ -50,4 +56,8 @@
   pear:
     name: horde/webmail-5.2.16
     state: present
+  become: yes
+
+- name: initialize database
+  command: webmail-install
   become: yes
