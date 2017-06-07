@@ -1,6 +1,12 @@
 # main.yml - Performs the Postfix and Horde installations.
 # This playbook requires the -K flag. This playbook is designed
 # to be run against a system with Debian 8 installed on it.
+# This playbook also requires that a shell other than bash set for the user 
+# on the remote system. Ansible really doesn't like it when you uninstall bash
+# midway through a play if it's using it, and this is necessary in order
+# to properly install the vulnerable version of bash. The shell used for 
+# testing was sh, so in theory it should work in any other modern shell, but 
+# YMMV.
 ---
 - include: postfix.yml
 - include: procmail.yml

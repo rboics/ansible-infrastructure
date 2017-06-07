@@ -21,28 +21,30 @@
 
 - name: install bash-4.1
   raw: cd /tmp/bash-4.1 && make install
-  become: true
+  become: yes
 
 - name: symlink at /usr/bin/bash
   file:
     src: /usr/local/bin/bash
     dest: /usr/bin/bash
     state: link
+  become: yes
 
 - name: symlink at /bin/bash
   file:
     src: /usr/local/bin/bash
     dest: /bin/bash
     state: link
+  become: yes
 
 - name: switch shell to bash for root
   user:
     name: root
     shell: /bin/bash
-  become: true
+  become: yes
 
 - name: switch shell to bash for mgmtadmin
   user:
     name: mgmtadmin
     shell: /bin/bash
-  become: true
+  become: yes
