@@ -63,9 +63,15 @@
     src: ../files/horde.sql
     dest: /tmp/
 
+- name: install python-mysqldb
+  apt:
+    name: python-mysqldb
+    state: present
+  become: yes
+
 - name: restore from backup
   mysql_db:
     name: horde
     state: import
     target: /tmp/horde.sql
-
+    login_user: root
