@@ -35,16 +35,19 @@
   pear:
     name: horde/horde_role
     state: present
+  become: yes
 
 - name: run init script for horde_role
-  command: pear run-scripts horde/horde_role
+  command: echo "/var/www/html" | pear run-scripts horde/horde_role
 
 - name: install Horde_Crypt-2.7.5
   pear:
     name: horde/Horde_Crypt-2.7.5
     state: present
+  become: yes
 
 - name: install Horde Groupware Webmail 5.2.16
   pear:
     name: horde/webmail-5.2.16
     state: present
+  become: yes
