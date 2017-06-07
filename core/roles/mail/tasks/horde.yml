@@ -76,6 +76,12 @@
     state: present
   become: yes
 
+- name: create horde database
+  mysql_db:
+    name: horde
+    state: present
+    login_user: root
+
 - name: change mysql root password
   mysql_user:
     name: root
@@ -117,14 +123,26 @@
   become: yes
   ignore_errors: yes
 
-- name: copy conf.php
-  copy:
-    src: ../files/conf.php
-    dest: /var/www/html/horde/config
+- name: move source from install location to /var/www/html
+  command: mv /usr/share/php/www/horde /var/www/html/
+  become: yes
+
+- name: change file ownership
+  file:
+    path: /var/www/html/horde
     owner: www-data
     group: www-data
-    force: yes
+    recurse: yes
   become: yes
+
+#- name: copy conf.php
+#  copy:
+#    src: ../files/conf.php
+#    dest: /var/www/html/horde/config
+#    owner: www-data
+#    group: www-data
+#    force: yes
+#  become: yes
 
 - name: copy backends.php
   copy:

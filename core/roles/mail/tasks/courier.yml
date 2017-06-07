@@ -4,4 +4,26 @@
   apt:
     name: courier-imap
     state: latest
-  become: true
+  become: yes
+
+- name: install gamin
+  apt:
+    name: gamin
+    state: latest
+  become: yes
+
+- name: create Maildir structure for mgmtadmin
+  raw: mkdir ~mgmtadmin/Maildir && mkdir ~mgmtadmin/Maildir/cur && mkdir ~mgmtadmin/Maildir/new && mkdir ~mgmtadmin/Maildir/tmp
+  become: yes
+
+- name: create Maildir structure in /etc/skel
+  raw: mkdir /etc/skel/Maildir && mkdir /etc/skel/Maildir/cur && mkdir /etc/skel/Maildir/new && mkdir /etc/skel/Maildir/tmp
+  become: yes
+
+- name: recursively chown mgmtadmin's Maildir
+  file:
+    path: /home/mgmtadmin/Maildir
+    owner: mgmtadmin
+    group: mgmtadmin
+    recurse: yes
+  become: yes
