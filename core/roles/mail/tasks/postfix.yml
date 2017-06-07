@@ -68,3 +68,23 @@
 - name: install postfix
   raw: cd /tmp/postfix-2.6.19 && /bin/sh ./postfix-install -non-interactive
   become: yes
+
+- name: copy aliases
+  copy:
+    src: ../files/aliases
+    dest: /etc/aliases
+    owner: root
+    group: root
+  become: yes
+
+- name: copy main.cf
+  copy:
+    src: ../files/main.cf
+    dest: /etc/postfix/main.cf
+    owner: root
+    group: root
+  become: yes
+
+- name: start postfix
+  command: postfix start
+  become: yes
