@@ -85,6 +85,10 @@
     group: root
   become: yes
 
+- name: initialize /etc/aliases.db
+  command: postalias /etc/aliases
+  become: yes
+
 - name: start postfix
   command: postfix start
   become: yes
