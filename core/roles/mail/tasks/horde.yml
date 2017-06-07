@@ -18,8 +18,18 @@
     state: present
   become: yes
 
+# In some minimal Debian installs, ca-certificates is not included by default.
+# Horde's PEAR server redirects http to https, so we need to use tls.
+
+- name: install ca-certificates
+  apt:
+    name: ca-certificates
+    state: present
+  become: yes
+
 - name: register horde pear channel
   command: pear channel-discover pear.horde.org
+  become: yes
 
 - name: install Horde
   pear:
