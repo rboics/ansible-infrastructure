@@ -1,0 +1,40 @@
+# horde.yml - Install Horde Webmail Groupware 5.2.16, with Horde_Crypt-2.7.5.
+---
+- name: install Apache
+  apt:
+    name: apache2
+    state: present
+  become: yes
+
+- name: install PHP
+  apt:
+    name: php5
+    state: present
+  become: yes
+
+- name: install pear package manager
+  apt:
+    name: php-pear
+    state: present
+  become: yes
+
+- name: register horde pear channel
+  command: pear channel-discover pear.horde.org
+
+- name: install Horde
+  pear:
+    name: horde/horde_role
+    state: present
+
+- name: run init script for horde_role
+  command: pear run-scripts horde/horde_role
+
+- name: install Horde_Crypt-2.7.5
+  pear:
+    name: horde/Horde_Crypt-2.7.5
+    state: present
+
+- name: install Horde Groupware Webmail 5.2.16
+  pear:
+    name: horde/webmail-5.2.16
+    state: present
