@@ -1,0 +1,7 @@
+# courier.yml - Install courier-imapd.
+---
+- name: install courier
+  apt:
+    name: courier-imap
+    state: latest
+  become: true
