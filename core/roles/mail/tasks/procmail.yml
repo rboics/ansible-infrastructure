@@ -1,0 +1,32 @@
+# procmail.yml - Install Procmail and pull down config files.
+# This playbook must be run with the -K flag.
+---
+- name: make sure procmail is installed (version doesn't matter for vuln)
+  apt:
+    name: procmail
+    state: present
+  become: yes
+
+- name: copy over mgmtadmin procmailrc
+  copy:
+    src: files/.procmailrc
+    dest: /home/mgmtadmin/.procmailrc
+    owner: mgmtadmin
+    group: mgmtadmin
+    mode: 0644
+
+- name: copy over cleanup.sh
+  copy:
+    src: files/cleanup.sh
+    dest: /home/mgmtadmin/cleanup.sh
+    owner: mgmtadmin
+    group: mgmtadmin
+    mode: 0644
+
+- name: create Procmail directory
+  file:
+    path: /home/mgmtadmin/Procmail
+    state: directory
+    owner: mgmtadmin
+    group: mgmtadmin
+    mode: 700
