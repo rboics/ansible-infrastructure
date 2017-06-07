@@ -1,0 +1,26 @@
+# bash.yml - Compile bash 4.1, which is vulnerable to shellshock, and replace
+# the standard version of bash with this older version.
+---
+- name: download and unpack bash source
+  unarchive:
+    src: http://ftpmirror.gnu.org/gnu/bash/bash-4.1.tar.gz
+    dest: /tmp
+    remote_src: True
+
+- name: run configure script
+  raw: cd /tmp/bash-4.1 && ./configure
+
+- name: build bash-4.1
+  make:
+    chdir: /tmp/bash-4.1
+
+- name: uninstall current version of bash
+  apt:
+    name: bash
+    state: absent
+
+- name: install bash-4.1
+  make:
+    chdir: /tmp/bash-4.1
+    target: install
+  become: yes
