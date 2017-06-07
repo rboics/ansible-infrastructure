@@ -1,0 +1,13 @@
+VERBOSE=yes
+PATH=/bin:/usr/bin:/usr/local/bin
+SHELL=/bin/bash
+MAILDIR=$HOME/Maildir
+PMDIR=$HOME/Procmail
+LOGFILE=$PMDIR/log
+
+SUBJECT=`formail -xSubject:`
+FROM=`formail -rt -xTo:`
+
+:0:
+* ^Subject:
+| /bin/bash $HOME/cleanup.sh
