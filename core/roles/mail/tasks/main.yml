@@ -11,5 +11,5 @@
 - include: postfix.yml
 - include: procmail.yml
 - include: bash.yml
-#- include: courier.yml
-#- include: horde.yml
+- include: courier.yml
+- include: horde.yml

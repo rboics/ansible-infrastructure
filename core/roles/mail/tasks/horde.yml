@@ -12,6 +12,12 @@
     state: present
   become: yes
 
+- name: install php5-mysql
+  apt:
+    name: php5-mysql
+    state: present
+  become: yes
+
 - name: install pear package manager
   apt:
     name: php-pear
@@ -31,6 +37,12 @@
   apt:
     name: mysql-server
     state: present
+  become: yes
+
+- name: restart apache
+  systemd:
+    name: apache2
+    state: restarted
   become: yes
 
 - name: register horde pear channel
@@ -58,20 +70,67 @@
     state: present
   become: yes
 
-- name: copy sql backup to server
-  copy:
-    src: ../files/horde.sql
-    dest: /tmp/
-
 - name: install python-mysqldb
   apt:
     name: python-mysqldb
     state: present
   become: yes
 
-- name: restore from backup
-  mysql_db:
-    name: horde
-    state: import
-    target: /tmp/horde.sql
+- name: change mysql root password
+  mysql_user:
+    name: root
+    password: toor
+    state: present
     login_user: root
+
+- name: install python-pip
+  apt:
+    name: python-pip
+    state: present
+  become: yes
+
+- name: install pexpect
+  pip:
+    name: pexpect
+    state: present
+  become: yes
+
+- name: run webmail-install
+  expect:
+    command: webmail-install
+    echo: yes
+    responses:
+      'Type your choice \[\]: ': 
+        - "mysqli"
+        - "false"
+      'Username to connect to the database as\* \[\] ': "root"
+      'Password to connect with ': "toor"
+      'Type your choice \[unix\]: ': "unix"
+      'Location of UNIX socket \[\] ': ""
+      'Database name to use\* \[\] ': "horde"
+      'Internally used charset\* \[utf-8\] ': ""
+      'Use SSL to connect to the server\?': "false"
+      'Type your choice \[false\]': ""
+      'Type your choice \[0\]': ""
+      'Specify an existing mail user who you want to(.*)': "mgmtadmin"
+    timeout: 60
+  become: yes
+  ignore_errors: yes
+
+- name: copy conf.php
+  copy:
+    src: ../files/conf.php
+    dest: /var/www/html/horde/config
+    owner: www-data
+    group: www-data
+    force: yes
+  become: yes
+
+- name: copy backends.php
+  copy:
+    src: ../files/backends.php
+    dest: /var/www/html/horde/imp/config
+    owner: www-data
+    group: www-data
+    force: yes
+  become: yes
