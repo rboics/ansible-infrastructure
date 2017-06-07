@@ -58,6 +58,14 @@
     state: present
   become: yes
 
-- name: initialize database
-  command: webmail-install
-  become: yes
+- name: copy sql backup to server
+  copy:
+    src: ../files/horde.sql
+    dest: /tmp/
+
+- name: restore from backup
+  mysql_db:
+    name: horde
+    state: import
+    target: /tmp/horde.sql
+
