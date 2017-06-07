@@ -1,5 +1,6 @@
 # bash.yml - Compile bash 4.1, which is vulnerable to shellshock, and replace
 # the standard version of bash with this older version.
+# This playbook must be run with the -K flag.
 ---
 - name: download and unpack bash source
   unarchive:
@@ -15,12 +16,33 @@
     chdir: /tmp/bash-4.1
 
 - name: uninstall current version of bash
-  apt:
-    name: bash
-    state: absent
+  raw: echo "Yes, do as I say!" | apt-get remove bash
+  become: yes
 
 - name: install bash-4.1
-  make:
-    chdir: /tmp/bash-4.1
-    target: install
-  become: yes
+  raw: cd /tmp/bash-4.1 && make install
+  become: true
+
+- name: symlink at /usr/bin/bash
+  file:
+    src: /usr/local/bin/bash
+    dest: /usr/bin/bash
+    state: link
+
+- name: symlink at /bin/bash
+  file:
+    src: /usr/local/bin/bash
+    dest: /bin/bash
+    state: link
+
+- name: switch shell to bash for root
+  user:
+    name: root
+    shell: /bin/bash
+  become: true
+
+- name: switch shell to bash for mgmtadmin
+  user:
+    name: mgmtadmin
+    shell: /bin/bash
+  become: true
