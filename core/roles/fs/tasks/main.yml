@@ -77,6 +77,13 @@
     group: root
   become: yes
 
+- name: create ftp user
+  user:
+    name: ftp
+    home: /
+    state: present
+  become: yes
+
 - name: start vsftpd
   service:
     name: vsftpd
