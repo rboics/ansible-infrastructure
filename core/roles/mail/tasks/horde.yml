@@ -171,3 +171,8 @@
     name: apache2
     state: restarted
   become: yes
+
+- name: change hostname
+  hostname:
+    name: mail
+  become: yes
