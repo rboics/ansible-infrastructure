@@ -1,5 +1,7 @@
+[all:vars]
+nameserver_ip=
 [nameserver]
 
-[nameserver:vars]
-nameserver_ip=
 [mail]
+
+[fs]
