@@ -135,15 +135,6 @@
     recurse: yes
   become: yes
 
-#- name: copy conf.php
-#  copy:
-#    src: ../files/conf.php
-#    dest: /var/www/html/horde/config
-#    owner: www-data
-#    group: www-data
-#    force: yes
-#  become: yes
-
 - name: copy backends.php
   copy:
     src: ../files/backends.php
@@ -151,4 +142,29 @@
     owner: www-data
     group: www-data
     force: yes
+  become: yes
+
+# Things break if you just copy conf.php directly over. We only really have
+# a few changes to make, so we can just edit the file live.
+
+- name: switch mailer type to smtp
+  replace:
+    path: /var/www/html/horde/config/conf.php
+    regexp: "\$conf\['mailer'\]\['type'\] = 'sendmail';"
+    replace: "$conf['mailer']['type'] = 'smtp';"
+  become: yes
+
+- name: add host param
+  blockinfile:
+    path: /var/www/html/horde/config/conf.php
+    block: "$conf['mailer']['params']['host'] = 'localhost';"
+  become: yes
+
+- name: add gnupg block
+  blockinfile:
+    path: /var/www/html/horde/config/conf.php
+    block: |
+      $conf['gnupg']['path'] = '/usr/bin/gpg';
+      $conf['gnupg']['keyserver'] = array('pool.sks-keyservers.net');
+      $conf['gnupg']['timeout'] = 10;
   become: yes
