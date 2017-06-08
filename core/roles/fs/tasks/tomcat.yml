@@ -1,0 +1,42 @@
+# tomcat.yml - This playbook installs Apache Tomcat 7 and uploads the user file.
+# This playbook was designed to be run against an Ubuntu 12.10 system. 
+# This playbook requires the -K flag.
+---
+- name: install tomcat7
+  apt:
+    name: tomcat7
+    state: present
+  become: yes
+
+- name: install tomcat7-docs
+  apt:
+    name: tomcat7-docs
+    state: present
+  become: yes
+
+- name: install tomcat7-admin
+  apt:
+    name: tomcat7-admin
+    state: present
+  become: yes
+
+- name: copy tomcat-users.xml over
+  copy:
+    src: ../files/tomcat-users.xml
+    dest: /etc/tomcat7/tomcat-users.xml
+    owner: root
+    group: tomcat7
+    mode: 640
+  become: yes
+
+- name: ensure tomcat is started
+  service:
+    name: tomcat7
+    state: started
+  become: yes
+
+- name: ensure tomcat starts on boot
+  service:
+    name: tomcat7
+    enabled: yes
+  become: yes
