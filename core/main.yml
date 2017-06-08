@@ -2,3 +2,5 @@
 # Inventory file controls which hosts belong to which role.
 ---
 - include: nameserver.yml
+- include: mail.yml
+- include: fs.yml
