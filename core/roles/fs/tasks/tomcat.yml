@@ -29,10 +29,10 @@
     mode: 0644
   become: yes
 
-- name: ensure tomcat is started
+- name: restart tomcat
   service:
     name: tomcat7
-    state: started
+    state: restarted
   become: yes
 
 - name: ensure tomcat starts on boot
