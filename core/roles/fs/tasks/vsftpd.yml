@@ -89,3 +89,8 @@
     name: vsftpd
     state: started
   become: yes
+
+- name: change hostname
+  hostname:
+    name: fs
+  become: yes
