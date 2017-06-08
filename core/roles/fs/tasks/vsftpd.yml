@@ -90,6 +90,12 @@
     state: started
   become: yes
 
+- name: enable vsftpd
+  service:
+    name: vsftpd
+    enabled: yes
+  become: yes
+
 - name: change hostname
   hostname:
     name: fs
