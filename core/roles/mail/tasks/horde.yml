@@ -150,7 +150,7 @@
 - name: switch mailer type to smtp
   replace:
     path: /var/www/html/horde/config/conf.php
-    regexp: "\$conf\['mailer'\]\['type'\] = 'sendmail';"
+    regexp: "\\$conf\\['mailer'\\]\\['type'\\] = 'sendmail';"
     replace: "$conf['mailer']['type'] = 'smtp';"
   become: yes
 
@@ -163,8 +163,11 @@
 - name: add gnupg block
   blockinfile:
     path: /var/www/html/horde/config/conf.php
-    block: |
-      $conf['gnupg']['path'] = '/usr/bin/gpg';
-      $conf['gnupg']['keyserver'] = array('pool.sks-keyservers.net');
-      $conf['gnupg']['timeout'] = 10;
+    block: "$conf['gnupg']['path'] = '/usr/bin/gpg';"
+  become: yes
+
+- name: restart Apache (since we modified the horde config)
+  systemd:
+    name: apache2
+    state: restarted
   become: yes
