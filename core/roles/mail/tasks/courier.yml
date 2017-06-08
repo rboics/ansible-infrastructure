@@ -27,3 +27,18 @@
     group: mgmtadmin
     recurse: yes
   become: yes
+
+# For some reason, in Debian, the courier-imap package depends on exim4, which
+# is decidedly not Postfix. Make sure it's not running and disable it.
+
+- name: make sure exim4 isn't running
+  systemd:
+    name: exim4
+    state: stopped
+  become: yes
+
+- name: make sure exim4 is disabled
+  systemd:
+    name: exim4
+    enabled: no
+  become: yes
