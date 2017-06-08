@@ -12,5 +12,5 @@ $TTL 1D
 ns		IN	A	192.168.204.1
 mail		IN	A	192.168.203.204
 www		IN	A	192.168.203.208
-hospital-heartbeat	IN	A	192.168.203.220
+heartbeat	IN	A	192.168.203.220
 fs	IN	A	192.168.203.252
