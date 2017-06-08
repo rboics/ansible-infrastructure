@@ -1,0 +1,20 @@
+# main.yml - Installs Apache on the webserver.
+# This playbook was designed to be run with -K.
+---
+- name: install apache
+  yum:
+    name: httpd
+    state: present
+  become: yes
+
+- name: ensure apache is started
+  service:
+    name: httpd
+    state: started
+  become: yes
+
+- name: ensure apache starts on boot
+  service:
+    name: httpd
+    enabled: yes
+  become: yes

@@ -1,0 +1,6 @@
+# web.yml - Map the fs group to the fs role.
+---
+- hosts: web
+  roles:
+    - web
+    - common

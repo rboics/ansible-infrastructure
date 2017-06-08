@@ -5,3 +5,5 @@ nameserver_ip=
 [mail]
 
 [fs]
+
+[web]
