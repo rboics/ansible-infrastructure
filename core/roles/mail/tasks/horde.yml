@@ -172,6 +172,14 @@
     state: restarted
   become: yes
 
+# Changing hostname on Debian minimal doens't work, since it requires dbus.
+
+- name: install dbus
+  apt:
+    name: dbus
+    state: present
+  become: yes
+
 - name: change hostname
   hostname:
     name: mail
