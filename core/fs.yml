@@ -1,0 +1,6 @@
+# fs.yml - Map the fs group to the fs role.
+---
+- hosts: fs
+  roles:
+    - fs
+#    - common
