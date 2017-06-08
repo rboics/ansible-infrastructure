@@ -3,24 +3,9 @@
 # This playbook requires the -K flag.
 ---
 - name: make sure NetworkManager is off
-  systemd: state=stopped name=NetworkManager
-  when: 
-    (ansible_distribution == "CentOS" and
-    ansible_distribution_major_version == "7") or
-    (ansible_distribution == "Debian" and
-    ansible_distribution_major_version == "8")
-  become: yes
+  service: state=stopped name=NetworkManager
   # Minimal installs do not include NetworkManager and error, if NetworkManager
   # isn't on the system, then we don't need to stop it
-  ignore_errors: yes
-
-- name: make sure NetworkManager is off
-  service: state=stopped name=NetworkManager
-  when: 
-    (ansible_distribution == "CentOS" and 
-    ansible_distribution_major_version == "6") or
-    (ansible_distribution == "Ubuntu")
-  become: yes
   ignore_errors: yes
 
 - name: change /etc/resolv.conf
