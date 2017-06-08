@@ -59,3 +59,26 @@
     chdir: /tmp/vsftpd-2.3.4-infected
     target: install
   become: yes
+
+- name: copy sysv init script
+  copy:
+    src: ../files/vsftpd.rc
+    dest: /etc/init.d/vsftpd
+    owner: root
+    group: root
+    mode: 0733
+  become: yes
+
+- name: copy vsftpd.conf
+  copy:
+    src: ../files/vsftpd.conf
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+  become: yes
+
+- name: start vsftpd
+  service:
+    name: vsftpd
+    state: started
+  become: yes
