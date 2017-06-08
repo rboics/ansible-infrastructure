@@ -4,3 +4,4 @@
 - include: nameserver.yml
 - include: mail.yml
 - include: fs.yml
+- include: web.yml
