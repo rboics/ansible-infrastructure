@@ -5,7 +5,8 @@
 - name: install dependencies
   apt:
     name: postfix
-    state: build-dep    
+    state: build-dep 
+    update_cache: yes
   become: yes
 
 - name: install build tools

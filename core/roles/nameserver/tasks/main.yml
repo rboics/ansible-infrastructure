@@ -7,6 +7,7 @@
   yum:
     name: bind
     state: latest
+    update_cache: yes
   become: true
 
 - name: copy config files over
