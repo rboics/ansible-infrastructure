@@ -1,0 +1,5 @@
+# common.yml - Map the common group to the common role.
+---
+- hosts: all
+  roles:
+    - common

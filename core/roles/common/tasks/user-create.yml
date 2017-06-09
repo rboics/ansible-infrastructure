@@ -2,16 +2,18 @@
 # systems.
 # This playbook requires the -K flag.
 ---
+
 - name: upload the csv
   copy:
-    src: ../files/users.csv
-    dest: /tmp/users.csv
+    src: ../files/user-create.csv
+    dest: /tmp/user-create.csv
 
 - name: run the user create script
-  script: ../files/user_create.sh
+  script: ../files/user-create.sh
   become: yes
 
 - name: delete the csv
   file:
-    path: /tmp/users.csv
+    path: /tmp/user-create.csv
     state: absent
+  become: yes
