@@ -1,0 +1,13 @@
+# main.yml - Promote Administrator accounts for the billing department.
+---
+- name: promote floor manager
+  win_user:
+    name: fflinch
+    groups: Administrators
+    groups_action: add
+
+- name: promote finance user
+  win_user:
+    name: BillAdmin
+    groups: Administrators
+    groups_action: add

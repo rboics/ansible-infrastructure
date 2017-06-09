@@ -1,0 +1,13 @@
+# main.yml - Promote Administrator accounts for the nursing department.
+---
+- name: promote floor manager
+  win_user:
+    name: fflinch
+    groups: Administrators
+    groups_action: add
+
+- name: promote nursing user
+  win_user:
+    name: NRSAdmin
+    groups: Administrators
+    groups_action: add

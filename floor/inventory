@@ -8,3 +8,8 @@ ansible_user=mgmtadmin
 ansible_password=admin
 ansible_port=5986
 ansible_winrm_server_cert_validation=ignore
+[billing]
+
+[mgmt]
+
+[nursing]
