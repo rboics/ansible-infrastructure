@@ -1,4 +1,5 @@
-# main.yml - Sets up the Windows systems by adding the hospital users.
+# main.yml - Sets up the Windows systems by adding the hospital users and
+# updating the DNS config.
 ---
 - name: upload csv
   win_copy:
@@ -12,3 +13,5 @@
   win_file:
     path: C:user-create.csv
     state: absent
+
+- include: update-dns.yml
