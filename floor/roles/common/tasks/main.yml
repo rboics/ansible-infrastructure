@@ -3,12 +3,12 @@
 - name: upload csv
   win_copy:
     src: ../files/user-create.csv
-    dest: C:\Temp\user-create.csv
+    dest: C:\user-create.csv
 
 - name: run script
   script: ../files/Add-Users.ps1
 
 - name: delete csv
   win_file:
-    path: C:\Temp\user-create.csv
+    path: C:user-create.csv
     state: absent
