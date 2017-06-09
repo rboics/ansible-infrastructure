@@ -1,0 +1,14 @@
+# main.yml - Sets up the Windows systems by adding the hospital users.
+---
+- name: upload csv
+  win_copy:
+    src: ../files/user-create.csv
+    dest: C:\Temp\user-create.csv
+
+- name: run script
+  script: ../files/User-Add.ps1
+
+- name: delete csv
+  win_file:
+    path: C:\Temp\user-create.csv
+    state: absent
