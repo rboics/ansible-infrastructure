@@ -1,0 +1,5 @@
+# nursing.yml - map the nursing role to the nursing playbook.
+---
+- hosts: nursing
+  roles:
+    - nursing

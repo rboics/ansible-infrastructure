@@ -1,0 +1,5 @@
+# mgmt.yml - map the mgmt role to the mgmt playbook.
+---
+- hosts: mgmt
+  roles:
+    - mgmt

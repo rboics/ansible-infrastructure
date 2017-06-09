@@ -1,0 +1,5 @@
+# billing.yml - map the billing role to the billing playbook.
+---
+- hosts: billing
+  roles:
+    - billing

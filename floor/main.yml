@@ -1,0 +1,6 @@
+# main.yml - Deploy the floor infrastructure.
+---
+- include: common.yml
+- include: billing.yml
+- include: mgmt.yml
+- include: nursing.yml
