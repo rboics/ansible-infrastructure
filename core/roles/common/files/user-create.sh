@@ -1,7 +1,7 @@
 # user_create.sh - Shell script to create users from a csv
 
-cat /tmp/users.csv | grep -v "#" > /tmp/users.csv.1
-mv /tmp/users.csv.1 /tmp/users.csv
+cat /tmp/user-create.csv | grep -v "#" > /tmp/user-create.csv.1
+mv /tmp/user-create.csv.1 /tmp/user-create.csv
 
 # Sudoers group differs between RedHat and Debian-based distros. This gets
 # around that.
@@ -9,7 +9,7 @@ mv /tmp/users.csv.1 /tmp/users.csv
 group_command="cat /etc/sudoers | grep -v '#' | grep '%' | awk -F \
 '[[:space:]]+' '{print $1}' | cut -d '%' -f2"
 
-for line in file
+while read line
 do
     username=$(echo $line | cut -d ',' -f1)
     password=$(echo $line | cut -d ',' -f2)
@@ -24,4 +24,4 @@ do
     fi
 #    yes $password passwd $username
         echo "Password: $password"
-done < /tmp/users.csv
+done < /tmp/user-create.csv
