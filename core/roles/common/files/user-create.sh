@@ -11,10 +11,16 @@ do
         # The sudoers group varies between Red Hat and Debian based distros.
         # This automatically finds out what group is specified in /etc/sudoers.
         group=$(cat /etc/sudoers | grep -v '#' | grep '%' \
-        | awk -F '[[:space:]]+' '{print $1}' | cut -d '%' -f2)
-        useradd -G $group $username
+        | awk -F ' ' '{print $1}' | cut -d '%' -f2)
+        # ...but in Ubuntu, /etc/sudoers contains both the admin and sudo group
+        # even though only the sudo group is auto-created. Detect if this
+        # is an Ubuntu system, and manually set group to sudo if it is.
+        if [ -e /etc/lsb-release ]; then
+            group="sudo"
+        fi
+        useradd -G $group -m -s /bin/bash $username
     else
-        useradd $username
+        useradd -m -s /bin/bash $username
     fi
     # This is an old unix utility that just continuously echoes out the
     # password into the passwd utility.
