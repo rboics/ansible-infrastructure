@@ -6,7 +6,7 @@
     dest: C:\Temp\user-create.csv
 
 - name: run script
-  script: ../files/User-Add.ps1
+  script: ../files/Add-Users.ps1
 
 - name: delete csv
   win_file:
