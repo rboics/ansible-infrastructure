@@ -1,4 +1,4 @@
-# main.yml - Promote Administrator accounts for the management department.
+# main.yml - Promote Administrator accounts for the new server.
 ---
 - name: promote floor manager
   win_user:
@@ -13,7 +13,7 @@
     groups_action: add
 
 - name: rename host
-  win_shell: Rename-Computer floor{{ floornumber }}-mgmt
+  win_shell: Rename-Computer floor{{ floornumber }}-server
 
-- name: restart host
+- name: reboot host
   win_reboot:

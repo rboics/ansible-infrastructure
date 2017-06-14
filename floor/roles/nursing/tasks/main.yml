@@ -11,3 +11,9 @@
     name: NRSAdmin
     groups: Administrators
     groups_action: add
+
+- name: change hostname
+  win_shell: Rename-Computer floor{{ floornumber }}-nurse-a
+
+- name: restart host
+  win_reboot:

@@ -1,0 +1,5 @@
+# server.yml - map the server role to the server playbook.
+---
+- hosts: server
+  roles:
+    - server
