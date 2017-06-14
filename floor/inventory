@@ -14,6 +14,8 @@ ansible_winrm_server_cert_validation=ignore
 
 [nursing]
 
+[server]
+
 [floor1]
 
 [floor1:vars]
