@@ -1,5 +1,5 @@
 # common.yml - map the common role to the common playbook.
 ---
-- hosts: windows
+- hosts: all
   roles:
     - common
