@@ -19,59 +19,59 @@ ansible_winrm_server_cert_validation=ignore
 [floor1]
 
 [floor1:vars]
-teamnumber=1
+floornumber=1
 
 [floor2]
 
 [floor2:vars]
-teamnumber=2
+floornumber=2
 
 [floor3]
 
 [floor3:vars]
-teamnumber=3
+floornumber=3
 
 [floor4]
 
 [floor4:vars]
-teamnumber=4
+floornumber=4
 
 [floor5]
 
 [floor5:vars]
-teamnumber=5
+floornumber=5
 
 [floor6]
 
 [floor6:vars]
-teamnumber=6
+floornumber=6
 
 [floor7]
 
 [floor7:vars]
-teamnumber=7
+floornumber=7
 
 [floor8]
 
 [floor8:vars]
-teamnumber=8
+floornumber=8
 
 [floor9]
 
 [floor9:vars]
-teamnumber=9
+floornumber=9
 
 [floor10]
 
 [floor10:vars]
-teamnumber=10
+floornumber=10
 
 [floor11]
 
 [floor11:vars]
-teamnumber=11
+floornumber=11
 
 [floor12]
 
 [floor12:vars]
-teamnumber=12
+floornumber=12
