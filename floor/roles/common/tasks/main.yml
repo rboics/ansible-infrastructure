@@ -11,8 +11,7 @@
 
 - name: delete csv
   win_file:
-    path: C:user-create.csv
+    path: C:\user-create.csv
     state: absent
 
 - include: update-dns.yml
-- include: change-hostname.yml
