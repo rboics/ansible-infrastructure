@@ -1,8 +1,5 @@
 [all:vars]
 nameserver_ip=
-[windows]
-
-[windows:vars]
 ansible_connection=winrm
 ansible_user=mgmtadmin
 ansible_password=admin
