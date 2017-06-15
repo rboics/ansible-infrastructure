@@ -106,3 +106,18 @@
   file:
     path: /tmp/vsftpd-2.3.4-infected/
     state: absent
+
+- name: make files directory
+  file:
+    path: /files
+    mode: 0755
+    owner: root
+    group: root
+    state: directory
+  become: yes
+
+- name: clone vulnserver into /files
+  git:
+    repo: https://github.com/stephenbradshaw/vulnserver
+    dest: /files/vulnserver
+  become: yes
