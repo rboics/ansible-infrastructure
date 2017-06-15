@@ -8,6 +8,18 @@
     update_cache: yes
   become: yes
 
+- name: install php
+  yum: 
+    name: httpd
+    state: present
+  become: yes
+
+- name: install mysql
+  yum:
+    name: mysql
+    state: present
+  become: yes
+
 - name: ensure apache is started
   service:
     name: httpd
