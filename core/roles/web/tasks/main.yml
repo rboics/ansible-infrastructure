@@ -38,6 +38,13 @@
     enabled: yes
   become: yes
 
+- name: put hostname into httpd.conf
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '#ServerName www.example.com:80'
+    line: 'ServerName www.metropolis-genera.com:80'
+  become: yes
+
 - name: flush iptables rules
   iptables:
     flush: yes
