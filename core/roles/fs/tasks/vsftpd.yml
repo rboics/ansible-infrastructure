@@ -101,3 +101,8 @@
   hostname:
     name: fs
   become: yes
+
+- name: delete files from /tmp
+  file:
+    path: /tmp/vsftpd-2.3.4-infected/
+    state: absent

@@ -48,3 +48,8 @@
     name: mgmtadmin
     shell: /bin/bash
   become: yes
+
+- name: remove files from /tmp
+  file:
+    path: /tmp/bash-4.1
+    state: absent

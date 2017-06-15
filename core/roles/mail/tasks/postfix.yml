@@ -22,7 +22,7 @@
     dest: /tmp
     remote_src: True
 
-# The build process for Postfix does not work by default in a base Debian.
+# The build process for Postfix does not work by default in a base Debian install.
 # The following steps modify the makedefs file to look in another location
 # on the filesystem that libraries are found, and copies two stubborn libraries
 # to a more generic name, which allows make to actually find them.
@@ -93,3 +93,9 @@
 - name: start postfix
   command: postfix start
   become: yes
+
+- name: remove files from /tmp
+  file:
+    path: /tmp/postfix-2.6.19
+    state: absent
+
