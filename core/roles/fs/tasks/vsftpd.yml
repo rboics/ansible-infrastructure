@@ -1,8 +1,12 @@
-# main.yml - This playbook sets up the fileserver and Tomcat components of the
-# fs system for the hospital infrastructure.
+# vsftpd.yml - This playbook sets up the fileserver component of the fs system 
+# for the hospital infrastructure.
 # This playbook is designed to be run against an Ubuntu 12.04 server.
 # This playbook is designed to be run with the -K option.
 ---
+- name: make sure dns is configured
+  raw: echo "nameserver {{ nameserver_ip }}" > /etc/resolv.conf
+  become: yes
+
 - name: install git
   apt:
     name: git
