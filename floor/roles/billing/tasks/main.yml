@@ -2,7 +2,7 @@
 ---
 - name: promote floor manager
   win_user:
-    name: fflinch
+    name: ffinch
     groups: Administrators
     groups_action: add
 
