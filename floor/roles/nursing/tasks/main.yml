@@ -12,6 +12,12 @@
     groups: Administrators
     groups_action: add
 
+- name: promote head nurse
+  win_user:
+    name: eerickson
+    groups: Administrators
+    groups_action: add
+
 - name: change hostname
   win_shell: Rename-Computer floor{{ floornumber }}-nurse-a
 
