@@ -4,3 +4,4 @@
 - include: billing.yml
 - include: mgmt.yml
 - include: nursing.yml
+- include: server.yml
