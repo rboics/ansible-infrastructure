@@ -7,7 +7,7 @@ $TTL 1D
 					3H )	; minimum
 @			    IN	NS	ns.metropolis-general.com.
 
-@			    IN	MX	10	mail.metropolis-general.com
+@			    IN	MX	10	mail.metropolis-general.com.
 
 ns		    IN	A	10.0.0.1
 mail		  IN	A	10.0.0.2
