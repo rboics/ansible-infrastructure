@@ -10,7 +10,7 @@
 
 - name: install php
   yum: 
-    name: httpd
+    name: php
     state: present
   become: yes
 
@@ -38,6 +38,18 @@
     enabled: yes
   become: yes
 
+- name: ensure mysql is started
+  service:
+    name: mysqld
+    state: started
+  become: yes
+
+- name: ensure mysql starts on boot
+  service:
+    name: mysqld
+    enabled: yes
+  become: yes
+
 - name: put hostname into httpd.conf
   lineinfile:
     path: /etc/httpd/conf/httpd.conf
@@ -48,4 +60,34 @@
 - name: flush iptables rules
   iptables:
     flush: yes
+  become: yes
+
+- name: install git
+  yum:
+    name: git
+    state: latest
+  become: yes
+
+- name: pull down portal from GitHub
+  git:
+    repo: "https://www.github.com/RITGenCyber/portal.git"
+    dest: /var/www/html
+  become: yes
+
+- name: make sure everything in /var/www/html is owned by apache
+  file:
+    path: /var/www/html
+    state: directory
+    owner: apache
+    group: apache
+    recurse: yes
+  become: yes
+
+- name: create backup directory
+  file:
+    path: /var/www/html/backups
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0755
   become: yes
