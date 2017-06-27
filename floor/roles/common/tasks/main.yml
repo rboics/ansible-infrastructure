@@ -14,4 +14,17 @@
     path: C:\user-create.csv
     state: absent
 
+- name: enable rdp
+  win_regedit:
+    path: "hklm:\system\currentcontrolset\control\terminal server" 
+    name: fDenyTSConnections 
+    type: dword 
+    data: 0
+
+- name: allow remote admin through firewall
+  win_shell: "netsh firewall set service remoteadmin enable"
+
+- name: allow rdp through firewall
+  win_shell: "netsh firewall set service remotedesktop enable"
+
 - include: update-dns.yml
