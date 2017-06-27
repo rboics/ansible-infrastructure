@@ -16,7 +16,7 @@
 
 - name: enable rdp
   win_regedit:
-    path: "hklm:\system\currentcontrolset\control\terminal server" 
+    path: 'hklm:\system\currentcontrolset\control\terminal server'
     name: fDenyTSConnections 
     type: dword 
     data: 0
