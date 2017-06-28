@@ -1,0 +1,84 @@
+# main.yml - Installs Apache and sets up the Mutillidae web app.
+# This playbook is designed to be run on a Debian 8 system.
+# This playbook requires the -K flag.
+---
+- name: install apache
+  apt:
+    name: apache2
+    state: present
+  become: yes
+
+- name: install php
+  apt:
+    name: php5
+    state: present
+  become: yes
+
+- name: install mysql
+  apt:
+    name: mysql-server
+    state: present
+  become: yes
+
+- name: install php-mysql
+  apt:
+    name: php5-mysql
+    state: present
+  become: yes
+
+- name: install php-curl
+  apt:
+    name: php5-curl
+    state: present
+  become: yes
+
+- name: install git
+  apt:
+    name: git
+    state: present
+  become: yes
+
+- name: restart apache so it loads php
+  service:
+    name: apache2
+    state: restarted
+  become: yes
+
+- name: ensure apache starts on boot
+  service:
+    name: apache2
+    state: started
+  become: yes
+
+- name: ensure mysql is started
+  service:
+    name: mysql
+    state: started
+  become: yes
+ 
+- name: clone mutillidae from github
+  git:
+    repo: https://www.github.com/neelaryan/mutillidae.git
+    dest: /var/www/html/mutillidae
+  become: yes
+
+- name: move mutillidae files to root of website
+  raw: mv /var/www/html/mutillidae/* /var/www/html
+  become: yes
+
+- name: remove empty directory
+  file:
+    name: /var/www/html/mutillidae
+    state: absent
+  become: yes
+
+- name: remove default index.html
+  file:
+    name: /var/www/html/index.html
+    state: absent
+  become: yes
+
+- name: change hostname
+  hostname: 
+    name: mutillidae
+  become: yes
