@@ -1,0 +1,6 @@
+# mutillidae.yml - Map the mutillidae group to the mutillidae role.
+---
+- hosts: mutillidae
+  roles:
+    - mutillidae
+    - common
