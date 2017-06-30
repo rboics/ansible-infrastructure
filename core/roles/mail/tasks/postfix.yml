@@ -99,3 +99,8 @@
     path: /tmp/postfix-2.6.19
     state: absent
 
+- name: add postfix start to /etc/rc.local
+  lineinfile:
+    path: /etc/rc.local
+    line: "/usr/sbin/postfix start"
+  become: yes

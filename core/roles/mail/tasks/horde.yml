@@ -119,6 +119,7 @@
       'Type your choice \[false\]': ""
       'Type your choice \[0\]': ""
       'Specify an existing mail user who you want to(.*)': "mgmtadmin"
+      'Should Horde log all queries(.*)': "0"
     timeout: 60
   become: yes
   ignore_errors: yes
