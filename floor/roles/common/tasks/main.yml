@@ -21,10 +21,18 @@
     type: dword 
     data: 0
 
-- name: allow remote admin through firewall
-  win_shell: "netsh firewall set service remoteadmin enable"
+- name: disable firewall
+  win_firewall:
+    state: disabled
+    profiles:
+      - Domain
+      - Public
+      - Private
 
-- name: allow rdp through firewall
-  win_shell: "netsh firewall set service remotedesktop enable"
+#- name: allow remote admin through firewall
+#  win_shell: "netsh firewall set service remoteadmin enable"
+#
+#- name: allow rdp through firewall
+#  win_shell: "netsh firewall set service remotedesktop enable"
 
 - include: update-dns.yml
