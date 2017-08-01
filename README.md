@@ -7,6 +7,8 @@ and the services specific to each floor. Because these components are vastly dif
 playbooks have been separated into two different subdirectories. README files in each subdirectory describe
 the contents of that subdirectory.
 
+The rest of this document acts as a tutorial on basic Ansible topics and provides a few example playbooks to explain these topics.
+
 ## What is Ansible?
 Ansible is a lightweight automation engine that utilizes OpenSSH and Python for Linux, PowerShell
 remoting for Windows, and the vSphere API for VMware vSphere, to carry out sets of tasks called playbooks.
