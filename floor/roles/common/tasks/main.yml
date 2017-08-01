@@ -22,12 +22,7 @@
     data: 0
 
 - name: disable firewall
-  win_firewall:
-    state: disabled
-    profiles:
-      - Domain
-      - Public
-      - Private
+  win_shell: "netsh advfirewall set allprofiles state off"
 
 - name: allow remote admin through firewall
   win_shell: "netsh firewall set service remoteadmin enable"
