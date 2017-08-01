@@ -113,9 +113,9 @@ As we will see when running the Windows playbooks, ansible-playbook will decrypt
 
 ### Windows Ansible requirements
 
-To run an Ansible playbook in Windows, Powershell must be updated to at least version 3, and this script must be run on the system. Because of this, the oldest supported versions of Windows that Ansible supports are Windows 7 and Windows Server 2008 SP2. Windows Remote Management must also be configured on the machine. A more detailed tutorial on how to easily setup WinRM can be found in the [README file](https://github.com/RITGenCyber/ansible-infrastructure/tree/master/floor) found in the floor directory in this repository.
+To run an Ansible playbook in Windows, Powershell must be updated to at least version 3, and this script must be run on the system. Because of this, the oldest supported versions of Windows that Ansible supports are Windows 7 and Windows Server 2008 SP2. Windows Remote Management must also be configured on the machine.
 
-However, these commands will quickly enable WinRM on systems running at least Windows 8/Server 2012:
+These commands will quickly enable WinRM on systems running at least Windows 8/Server 2012:
 
 ```
 PS> Enable-PSRemoting -Force -SkipNetworkProfileCheck
