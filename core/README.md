@@ -21,7 +21,7 @@ is at core/inventory.
 ## Deploying the infrastructure
 The core servers can be deployed by simply running this command: `ansible-playbook -i inventory -K main.yml`. You may optionally have to provide the -u option if using a specific user to login to the managed nodes.
 
-The main.yml playbook calls some playbooks called glue playbooks, which are the other playbooks that map the host groups in the inventory file to the appropriate roles. These are the fs, common, mail (etc) YAML files that are in the root of the repository.
+The main.yml playbook calls some playbooks called glue playbooks, which are other playbooks that map the host groups in the inventory file to the appropriate roles. These are the fs, common, mail (etc) YAML files that are in the root of the repository.
 
 Each role has several smaller playbooks that separately run the tasks needed to
 set up that server. For example, the mail role contains tasks to install Bash, Courier-IMAP, Horde, Postfix, and Procmail. These playbooks can be found in each role's "tasks" folder.
