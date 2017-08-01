@@ -17,7 +17,17 @@ Before deploying, make sure that you have modified the inventory file to your li
 
 Make sure that the mgmtadmin user exists on every host you want to deploy to and that it has the password "admin". If you are going to use a different username/password combination, be sure to update the inventory file. Keep in mind, the mgmtadmin user will not be created in this case.
 
-Make sure WinRM is enabled before deploying. To quickly enable WinRM on systems running Windows 7/Server 2008:
+Make sure WinRM is enabled before deploying. These commands will quickly enable WinRM on systems running at least Windows 8/Server 2012:
+
+```
+PS> Enable-PSRemoting -Force -SkipNetworkProfileCheck
+PS> Set-Item wsman:\localhost\client\trustedhosts *
+C:\> winrm set winrm/config/client/auth @{Basic="true"}
+C:\> winrm set winrm/config/service/auth @{Basic="true"}
+C:\> winrm set winrm/config/service @{AllowUnencrypted="true"}
+```
+
+To quickly enable WinRM on systems running Windows 7/Server 2008:
   - Make sure Service Pack 1 and .NET 4.0 are installed.
   - Upgrade PowerShell to version 3.0.
   - Make sure the account you're using to login has a password configured, and that the network profile for the firewall is not set to public.
