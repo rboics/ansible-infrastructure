@@ -10,8 +10,8 @@ the contents of that subdirectory.
 The rest of this document acts as a tutorial on basic Ansible topics and provides a few example playbooks to explain these topics.
 
 ## What is Ansible?
-Ansible is a lightweight automation engine that utilizes OpenSSH and Python for Linux, PowerShell
-remoting for Windows, and the vSphere API for VMware vSphere, to carry out sets of tasks called playbooks.
+Ansible is a lightweight automation engine that utilizes OpenSSH and Python for Linux and PowerShell
+remoting for Windows to carry out sets of tasks called playbooks.
 The small amount of software needed to be installed on clients makes Ansible perfect for quick deployment
 of basic infrastructure, as some of these packages are already found by default in installations of these operating systems.
 
