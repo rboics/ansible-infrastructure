@@ -1,3 +1,4 @@
+# Add each server's IP address to the appropriate category.
 [all:vars]
 nameserver_ip=
 [nameserver]
@@ -7,3 +8,5 @@ nameserver_ip=
 [fs]
 
 [web]
+
+[mutillidae]

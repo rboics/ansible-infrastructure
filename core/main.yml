@@ -1,5 +1,6 @@
-# main.yml - Master playbook that includes all the roles. 
+# main.yml - Master playbook that includes all the roles.
 # Inventory file controls which hosts belong to which role.
+# This playbook must be run with the -K flag.
 ---
 - include: nameserver.yml
 - include: mail.yml

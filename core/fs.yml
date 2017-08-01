@@ -1,4 +1,5 @@
 # fs.yml - Map the fs group to the fs role.
+# This playbook must be run with the -K flag.
 ---
 - hosts: fs
   roles:

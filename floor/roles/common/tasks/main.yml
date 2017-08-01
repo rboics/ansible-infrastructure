@@ -17,8 +17,8 @@
 - name: enable rdp
   win_regedit:
     path: 'hklm:\system\currentcontrolset\control\terminal server'
-    name: fDenyTSConnections 
-    type: dword 
+    name: fDenyTSConnections
+    type: dword
     data: 0
 
 - name: disable firewall
@@ -29,10 +29,10 @@
       - Public
       - Private
 
-#- name: allow remote admin through firewall
-#  win_shell: "netsh firewall set service remoteadmin enable"
-#
-#- name: allow rdp through firewall
-#  win_shell: "netsh firewall set service remotedesktop enable"
+- name: allow remote admin through firewall
+  win_shell: "netsh firewall set service remoteadmin enable"
+
+- name: allow rdp through firewall
+  win_shell: "netsh firewall set service remotedesktop enable"
 
 - include: update-dns.yml

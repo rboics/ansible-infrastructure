@@ -1,4 +1,5 @@
 # common.yml - Map the common group to the common role.
+# This playbook must be run with the -K flag.
 ---
 - hosts: all
   roles:
