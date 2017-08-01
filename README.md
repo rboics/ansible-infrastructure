@@ -17,15 +17,20 @@ of basic infrastructure, as some of these packages are already found by default 
 
 Playbooks are files that describe a series of tasks to be carried out on a given system. For instance,
 one could write a playbook that makes sure that every Linux server in a given set of hosts has an up-to-date
-installation of Nginx. These playbooks are written in YAML, which is a format that is meant to be human-readable.
+installation of Nginx, a popular webserver. These playbooks are written in YAML (YAML Ain't Markup Language), which is a format that is meant to be human-readable.
 Each playbook has a group of hosts that it should be run against, specified by the hosts directive.
 All of the hosts that are managed by Ansible are kept in an inventory file, which is by default located in /etc/ansible/hosts.
 
 ## Using Ansible with Linux
 Ansible was originally developed with Unix/Linux systems in mind, and as such there are way more modules available than there are for Windows. A full list of all the modules that Ansible supports can be found [here](http://docs.ansible.com/ansible/latest/modules_by_category.html). Almost any task needed to administer a Linux system is supported in an Ansible module, and if a module doesn’t exist for what you’re trying to do, you can use the raw or shell modules to execute commands directly on the remote system.
 
+### Linux Ansible requirements
+The control machine, which is where you will actually run the ansible-playbook commands, must have Python 2.7 and the ansible package installed. Currently Ansible only supports using Linux as a control machine.
+
+For the hosts you will be managing with Ansible, Ansible requires an SSH server and at least Python 2.2 to be installed.
+
 ### ssh-key.yml
-Before jumping into the deployment side of things, it’s worth noting a few things about how Ansible handles the actual SSH connection itself. By default, Ansible will try to use whatever SSH keys are currently known to ssh-agent and the username that ran the playbook as credentials to log in to whatever hosts are referenced in the playbook. Remember, this is why Ansible needs an SSH server to be installed on any \*nix systems that it interacts with. This default login behavior can be modified using the -k and -u flags, which specify that an SSH password will be entered, and provides a username to login as, respectively.
+Before jumping into the actual playbooks, it’s worth noting a few things about how Ansible handles the actual SSH connection itself. By default, Ansible will try to use whatever SSH keys are currently known to ssh-agent and the username of the user that is running the playbook as credentials to log in to whatever hosts are referenced in the playbook. Remember, this is why Ansible needs an SSH server to be installed on any \*nix systems that it interacts with. This default login behavior can be modified using the -k and -u flags, which specify that an SSH password will be entered, and provides a username to login as, respectively.
 
 Ideally, key-based authentication will be used for every playbook. However, we don’t want to have to login to every single host we want to administer and transfer a key over. That’s where this playbook becomes useful.
 
