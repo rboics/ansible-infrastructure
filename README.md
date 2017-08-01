@@ -1,6 +1,6 @@
 # 2017 RIT GenCyber Summer Camp Ansible Playbooks
 
-This project contains Ansible playbooks that automatically deploy the infrastructure used for RIT's 2017 GenCyber summer camp, as well as some documents that describe what Ansible is, how it works, and how to use deploy the infrastructure using Ansible.
+This project contains Ansible playbooks that automatically deploy the infrastructure used for RIT's 2017 GenCyber summer camp, as well as some documents that describe what Ansible is, how it works, and how to deploy the infrastructure using Ansible.
 
 There are two components to this infrastructure: the core services offered to all floors of the hospital,
 and the services specific to each floor. Because these components are vastly different, their configs and
