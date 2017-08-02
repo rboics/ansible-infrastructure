@@ -28,11 +28,10 @@
 # switch to using the domain profile. This should allow RDP to still work after
 # the hosts are joined to the domain.
 
-#- name: allow remote admin through firewall
-  #win_shell: "netsh firewall set service remoteadmin enable"
+- name: allow rdp through firewall (domain)
+  win_shell: "netsh advfirewall firewall set rule group='remote desktop' new enable=Yes profile=domain"
 
-- name: allow rdp through firewall
-  #win_shell: "netsh firewall set service remotedesktop enable"
-  win_shell: "netsh advfirewall set allprofiles rule group='remote desktop' new enable=Yes"
+- name: allow rdp through firewall (private)
+  win_shell: "netsh advfirewall firewall set rule group='remote desktop' new enable=Yes profile=private"
 
 - include: update-dns.yml
