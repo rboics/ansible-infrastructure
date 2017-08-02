@@ -1,5 +1,5 @@
-# update-dns.yml - This playbook modifies a host's DNS configuration to point
-# at the IP specified in the inventory file.
+# update-dns.yml - This include file modifies a host's DNS configuration to
+# point at the IP specified in the inventory file.
 ---
 - name: update DNS config
   win_dns_client:
