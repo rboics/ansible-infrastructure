@@ -29,9 +29,6 @@
 # the hosts are joined to the domain.
 
 - name: allow rdp through firewall (domain)
-  win_shell: "netsh advfirewall firewall set rule group='remote desktop' new enable=Yes profile=domain"
-
-- name: allow rdp through firewall (private)
-  win_shell: "netsh advfirewall firewall set rule group='remote desktop' new enable=Yes profile=private"
+  win_shell: "netsh advfirewall firewall set rule group='remote desktop' new enable=Yes"
 
 - include: update-dns.yml

@@ -28,8 +28,10 @@ C:\> winrm set winrm/config/service @{AllowUnencrypted="true"}
 ```
 
 To quickly enable WinRM on systems running Windows 7/Server 2008:
-  - Make sure Service Pack 1 and .NET 4.0 are installed.
-  - Upgrade PowerShell to version 3.0.
+  - Make sure Service Pack 1 and .NET 4.5 are installed.
+  - Upgrade PowerShell to version 4.0.
+    - PS 3.0 is the minimum supported version by Ansible, but I ran into some issues related to the quota error referenced below that were fixed
+    by using PS 4.0.
   - Make sure the account you're using to login has a password configured, and that the network profile for the firewall is not set to public.
 
 ```
