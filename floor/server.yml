@@ -1,4 +1,5 @@
 # server.yml - map the server role to the server playbook.
+# Server - Windows Server 2012 x64, promotes ffinch and mgmtadmin.
 ---
 - hosts: server
   roles:

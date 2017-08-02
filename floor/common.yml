@@ -1,4 +1,5 @@
 # common.yml - map the common role to the common playbook.
+# Creates users on all hosts (user promotions are handled by the other roles).
 ---
 - hosts: all
   roles:

@@ -1,4 +1,5 @@
 # nursing.yml - map the nursing role to the nursing playbook.
+# NurseA - Windows 7 x64, promotes NRSAdmin, eerickson, and ffinch.
 ---
 - hosts: nursing
   roles:
