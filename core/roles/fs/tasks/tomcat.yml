@@ -1,6 +1,5 @@
-# tomcat.yml - This playbook installs Apache Tomcat 7 and uploads the user file.
-# This playbook was designed to be run against an Ubuntu 12.10 system. 
-# This playbook requires the -K flag.
+# tomcat.yml - This include file installs Apache Tomcat 7 and uploads the user
+# file.
 ---
 - name: install tomcat7
   apt:

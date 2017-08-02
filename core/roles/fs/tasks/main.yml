@@ -1,5 +1,6 @@
 # main.yml - Calls each playbook that installs the software for this system.
 # This playbook is designed to be run against an Ubuntu 12.10 system.
+# This playbook requires the -K flag.
 ---
 - include: vsftpd.yml
 - include: tomcat.yml

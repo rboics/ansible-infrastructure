@@ -1,7 +1,4 @@
-# vsftpd.yml - This playbook sets up the fileserver component of the fs system 
-# for the hospital infrastructure.
-# This playbook is designed to be run against an Ubuntu 12.04 server.
-# This playbook is designed to be run with the -K option.
+# vsftpd.yml - This include file sets up the vulnerable vsftpd installation.
 ---
 - name: make sure dns is configured
   raw: echo "nameserver {{ nameserver_ip }}" > /etc/resolv.conf
@@ -23,7 +20,8 @@
   command: apt-get -y build-dep vsftpd
   become: yes
 
-# There are a few gotchas in the build on Ubuntu 12.04. These steps resolve them.
+# There are a few gotchas in the build on Ubuntu 12.04. These steps resolve
+# them.
 
 - name: Modify LIBS arg in MAKEFILE to link pam and cap modules
   replace:
@@ -31,7 +29,7 @@
     regexp: 'LIBS(.*)=(.*)`.\/vsf_findlibs\.sh`'
     replace: 'LIBS = `./vsf_findlibs.sh` -lpam -lcap'
 
-- name: make vsf_findlibs.sh executable 
+- name: make vsf_findlibs.sh executable
   file:
     path: /tmp/vsftpd-2.3.4-infected/vsf_findlibs.sh
     mode: "u+x,g+x,o+x"
@@ -64,6 +62,8 @@
     chdir: /tmp/vsftpd-2.3.4-infected
     target: install
   become: yes
+
+# This makes it easier to run vsftpd as a daemon.
 
 - name: copy sysv init script
   copy:
@@ -119,6 +119,8 @@
     group: root
     state: directory
   become: yes
+
+# The VulnServer is used during the exploit dev portion of the camp.
 
 - name: clone vulnserver into /files
   git:
