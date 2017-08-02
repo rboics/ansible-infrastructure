@@ -1,6 +1,5 @@
 # user_create.yml - create the accounts for the hospital's staff on the Linux
 # systems.
-# This playbook requires the -K flag.
 ---
 
 - name: upload the csv

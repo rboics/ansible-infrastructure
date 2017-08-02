@@ -1,6 +1,5 @@
-# update-dns.yml - This playbook modifies a host's DNS configuration to point
-# at the IP specified in the inventory file.
-# This playbook requires the -K flag.
+# update-dns.yml - This include file modifies a host's DNS configuration to
+# point at the IP specified in the inventory file.
 ---
 - name: make sure NetworkManager is off
   service: state=stopped name=NetworkManager
