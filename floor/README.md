@@ -1,7 +1,7 @@
 # Floor
 
 The floor infrastructure consists of five Windows systems and one Linux system:
-- A system running a base installation of Windows Server 2012
+- A system running a base installation of Windows Server 2012 R2
 - A system running Windows 7 SP1
 - A system running Windows XP
 - Two systems running Windows 10
@@ -42,7 +42,7 @@ C:\> winrm set winrm/config/service/auth @{Basic="true"}
 C:\> winrm set winrm/config/service @{AllowUnencrypted="true"}
 ```
 
-If you are using a fresh installation of Windows 7 or Windows Server 2012, you may run into some glitches with WinRM. For Windows 7, install this hotfix: [KB2842230](https://support.microsoft.com/en-us/help/2842230/-out-of-memory-error-on-a-computer-that-has-a-customized-maxmemorypers). There is a resource limit that is set by Windows on shells, which can be customized. A bug in WinRM ignored that value, even if it was customized.
+If you are using a fresh installation of Windows 7, you may run into some glitches with WinRM. For Windows 7, install this hotfix: [KB2842230](https://support.microsoft.com/en-us/help/2842230/-out-of-memory-error-on-a-computer-that-has-a-customized-maxmemorypers). There is a resource limit that is set by Windows on shells, which can be customized. A bug in WinRM ignored that value, even if it was customized.
 
 To deploy the infrastructure, run `ansible-playbook -i inventory main.yml`.
 
