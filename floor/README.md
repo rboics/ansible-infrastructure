@@ -42,6 +42,8 @@ C:\> winrm set winrm/config/service/auth @{Basic="true"}
 C:\> winrm set winrm/config/service @{AllowUnencrypted="true"}
 ```
 
+If you are using a fresh installation of Windows 7 or Windows Server 2012, you may run into some glitches with WinRM. For Windows 7, install this hotfix: [KB2842230](https://support.microsoft.com/en-us/help/2842230/-out-of-memory-error-on-a-computer-that-has-a-customized-maxmemorypers). There is a resource limit that is set by Windows on shells, which can be customized. A bug in WinRM ignored that value, even if it was customized.
+
 To deploy the infrastructure, run `ansible-playbook -i inventory main.yml`.
 
 Because the floors just need users to be created, the playbooks for the floors are a bit simpler. Just like in the core infrastructure, every host is separated into roles and have glue playbooks (billing,mgmt,nursing,server,common.yml) that map each group of hosts to their roles.
