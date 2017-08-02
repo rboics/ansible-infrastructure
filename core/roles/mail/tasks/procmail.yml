@@ -1,5 +1,4 @@
 # procmail.yml - Install Procmail and pull down config files.
-# This playbook must be run with the -K flag.
 ---
 - name: make sure procmail is installed (version doesn't matter for vuln)
   apt:

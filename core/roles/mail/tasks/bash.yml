@@ -1,6 +1,9 @@
 # bash.yml - Compile bash 4.1, which is vulnerable to shellshock, and replace
 # the standard version of bash with this older version.
-# This playbook must be run with the -K flag.
+# Reminder: make sure that the shell Ansible is using to connect to the
+# mailserver is NOT bash. This include file specifically will break hard if
+# it's trying to uninstall bash while using bash. This include file will change
+# the root and mgmtadmin shells to use bash once it is reinstalled.
 ---
 - name: download and unpack bash source
   unarchive:
@@ -14,6 +17,8 @@
 - name: build bash-4.1
   make:
     chdir: /tmp/bash-4.1
+
+# apt-get makes you jump through hoops if you try to remove core packages
 
 - name: uninstall current version of bash
   raw: echo "Yes, do as I say!" | apt-get remove bash

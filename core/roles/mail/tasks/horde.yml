@@ -49,6 +49,9 @@
   command: pear channel-discover pear.horde.org
   become: yes
 
+# These steps take a really long time. If Ansible is hanging on these steps,
+# just be patient.
+
 - name: install Horde
   pear:
     name: horde/horde_role
@@ -101,12 +104,17 @@
     state: present
   become: yes
 
+# The webmail-install script Horde provides is not great. This expect script
+# will answer all of the questions successfully, but for some reason it still
+# failed every time even though the error output clearly showed the script
+# was successfully executed. This is why ignore_errors is used in this task.
+
 - name: run webmail-install
   expect:
     command: webmail-install
     echo: yes
     responses:
-      'Type your choice \[\]: ': 
+      'Type your choice \[\]: ':
         - "mysqli"
         - "false"
       'Username to connect to the database as\* \[\] ': "root"
@@ -173,7 +181,7 @@
     state: restarted
   become: yes
 
-# Changing hostname on Debian minimal doens't work, since it requires dbus.
+# Changing hostname on Debian minimal doesn't work, since it requires dbus.
 
 - name: install dbus
   apt:

@@ -1,11 +1,9 @@
 # postfix.yml - Downloads and builds Postfix 2.6.19.
-# This playbook was designed to be run against a Debian 8 system. 
-# This playbook requires the -K flag.
 ---
 - name: install dependencies
   apt:
     name: postfix
-    state: build-dep 
+    state: build-dep
     update_cache: yes
   become: yes
 
@@ -22,10 +20,10 @@
     dest: /tmp
     remote_src: True
 
-# The build process for Postfix does not work by default in a base Debian install.
-# The following steps modify the makedefs file to look in another location
-# on the filesystem that libraries are found, and copies two stubborn libraries
-# to a more generic name, which allows make to actually find them.
+# The build process for Postfix does not work by default in a base Debian
+# install. The following steps modify the makedefs file to look in another
+# location on the filesystem that libraries are found, and copies two stubborn
+# libraries to a more generic name, which allows make to find them.
 
 - name: augment makedefs
   replace:
@@ -35,7 +33,7 @@
 
 - name: copy file 1
   command: |
-    cp /lib/x86_64-linux-gnu/libnsl.so.1 
+    cp /lib/x86_64-linux-gnu/libnsl.so.1
     /lib/x86_64-linux-gnu/libnsl.so
   become: yes
 
@@ -61,7 +59,7 @@
   become: yes
 
 - name: make postfix-install executable
-  file: 
+  file:
     path: /tmp/postfix-2.6.19/postfix-install
     mode: "o+x"
   become: yes
@@ -98,6 +96,8 @@
   file:
     path: /tmp/postfix-2.6.19
     state: absent
+
+# This will automatically start Postfix on startup.
 
 - name: add postfix start to /etc/rc.local
   lineinfile:

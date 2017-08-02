@@ -29,7 +29,8 @@
   become: yes
 
 # For some reason, in Debian, the courier-imap package depends on exim4, which
-# is decidedly not Postfix. Make sure it's not running and disable it.
+# is decidedly not Postfix. Make sure it's not running and disable it, otherwise
+# it will get in the way of Postfix.
 
 - name: make sure exim4 isn't running
   systemd:
