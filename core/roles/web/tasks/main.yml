@@ -1,4 +1,5 @@
-# main.yml - Installs Apache on the webserver.
+# main.yml - Installs Apache on the webserver and pulls down vulnerable portal
+# webapp from GitHub.
 # This playbook was designed to be run with -K.
 ---
 - name: install apache
@@ -9,7 +10,7 @@
   become: yes
 
 - name: install php
-  yum: 
+  yum:
     name: php
     state: present
   become: yes
@@ -60,7 +61,7 @@
   lineinfile:
     path: /etc/httpd/conf/httpd.conf
     regexp: '#ServerName www.example.com:80'
-    line: 'ServerName www.metropolis-genera.com:80'
+    line: 'ServerName www.metropolis-general.com:80'
   become: yes
 
 - name: flush iptables rules
