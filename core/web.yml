@@ -1,4 +1,4 @@
-# web.yml - Map the fs group to the fs role.
+# web.yml - Map the web group to the web role.
 # This playbook must be run with the -K flag.
 ---
 - hosts: web
