@@ -13,7 +13,7 @@
     groups_action: add
 
 - name: rename host
-  win_shell: Rename-Computer floor{{ floornumber}}-billing
+  win_shell: Rename-Computer floor{{ floornumber }}-billing
 
 - name: restart host
   win_reboot:
