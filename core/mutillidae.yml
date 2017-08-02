@@ -1,4 +1,5 @@
 # mutillidae.yml - Map the mutillidae group to the mutillidae role.
+# This playbook must be run with the -K flag.
 ---
 - hosts: mutillidae
   roles:
