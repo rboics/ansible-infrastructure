@@ -1,0 +1,15 @@
+Name,User,Password,Role,Notes
+,root,toor/toor12,,
+,BillAdmin,8kU7%Sq,Admin,Admin user on HR/Finance Machines
+,NRSAdmin,GxV96BW2bfTarNd,Admin,Admin user on nurses station computers
+,MgmtAdmin,admin,Admin,"Admin user on management machines (actually all machines except for nurseB, deployment is easier if it's not using Administrator)"
+Alice Anderson,aanderson,2mN8q,User,Nurse
+Bob Robertson,brobertson,n9h5G^n7BjmM,User,Nurse
+Carl Carlson,ccarlson,bowwow,User,Nurse
+Danielle Davidson,ddavidson,X9UgU8kjetHDEFV,User,Nurse
+Eric Erickson,eerickson,y8P6rmr,Admin,Head Nurse; admin on nursing machines
+Fran Finch,ffinch,honeybun,Admin,Floor Manager; admin on all hosts
+Greg Gregorivich,ggregorivich,bR9&vD3,User,Billing Rep
+Ingrid Ibanez,iibanez,summertime,User,Billing Rep
+OSSIM Admin,admin,P@ssw0rd123,,
+,Administrator,P@ssw0rd123,,
